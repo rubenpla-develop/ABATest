@@ -6,14 +6,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class HomeFragmentModule {
+class HomeFragmentPresenterModule {
 
     @Provides
     @ActivityScope
-    internal fun providesHomeFragmentPresenter() : HomeFragmentPresenter {
+    fun providesHomeFragmentPresenter() : HomeFragmentPresenter {
         return HomeFragmentPresenter()
     }
-
-
-
 }
