@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/image_thumb_width"
+            android:paddingTop="@dimen/activity_margin_half">
+
+            <TextView
+                android:id="@+id/item_list_movie_title"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_margin_content"
+                android:layout_marginTop="@dimen/activity_margin_quarter"
+                android:maxLines="1"
+                tools:text="Title"/>
+
+            <TextView
+                android:id="@+id/movie_item_list__overview"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_margin_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:text="@{movieBindModel.overview}"
+                tools:text="@string/lorem_ipsum_template"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin_half"
+            app:cardBackgroundColor="@color/placeholder_grey"
+            app:cardCornerRadius="3dp"
+            app:cardPreventCornerOverlap="false">
+
+            <ProgressBar
+                android:id="@+id/movie_item_list_card_view_progressbar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="@dimen/activity_margin"
+                android:layout_height="@dimen/activity_margin"
+                android:layout_gravity="center"
+                android:theme="@style/CircularProgress"/>
+
+            <ImageView
+                android:id="@+id/movie_item_list_card_view_image_view"
+                android:layout_width="@dimen/image_thumb_width"
+                android:layout_height="@dimen/image_thumb_height"/>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+</LinearLayout>
