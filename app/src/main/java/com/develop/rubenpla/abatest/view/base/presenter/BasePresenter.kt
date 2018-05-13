@@ -2,21 +2,36 @@ package com.develop.rubenpla.abatest.view.base.presenter
 
 import com.develop.rubenpla.abatest.view.base.contract.BaseView
 import com.develop.rubenpla.abatest.view.base.contract.PresenterContract
+import java.lang.ref.WeakReference
 
-class BasePresenter<T : BaseView> : PresenterContract<T>  {
+open class BasePresenter<T : BaseView> : PresenterContract<T>  {
+
+    var isInForeground : Boolean = false
+    private var weakReference : WeakReference<T>? = null
+
+    val view : T?
+        get() = weakReference?.get()
+
+    private val isViewAttached : Boolean
+        get() = weakReference != null && weakReference!!.get() != null
+
     override fun attachView(view: T) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (!isViewAttached) {
+            weakReference = WeakReference(view)
+            view.setPresenter(this)
+        }
     }
 
     override fun detachView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        weakReference?.clear()
+        weakReference = null
     }
 
     override fun onResume() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        isInForeground = true
     }
 
     override fun onPause() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        isInForeground = false
     }
 }
