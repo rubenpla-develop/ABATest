@@ -27,6 +27,8 @@ allprojects {
         ext.minSdkVersion=18
         ext.targetSdkVersion=27
         ext.compileSdkVersion=27
+
+        ext.daggerVersion = 2.5
     }
 }
 
