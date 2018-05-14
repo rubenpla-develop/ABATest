@@ -4,7 +4,7 @@ import com.develop.rubenpla.abatest.view.base.contract.BaseView
 import com.develop.rubenpla.abatest.view.base.contract.PresenterContract
 import java.lang.ref.WeakReference
 
-open class BasePresenter<T : BaseView> : PresenterContract<T>  {
+abstract class BasePresenter<T : BaseView> : PresenterContract<T>  {
 
     var isInForeground : Boolean = false
     private var weakReference : WeakReference<T>? = null
@@ -14,6 +14,8 @@ open class BasePresenter<T : BaseView> : PresenterContract<T>  {
 
     private val isViewAttached : Boolean
         get() = weakReference != null && weakReference!!.get() != null
+
+    abstract fun terminate()
 
     override fun attachView(view: T) {
         if (!isViewAttached) {

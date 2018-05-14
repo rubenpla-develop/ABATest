@@ -2,7 +2,6 @@ package com.develop.rubenpla.abatest.view.home.fragment
 
 import android.content.Context
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.develop.rubenpla.abatest.R
 import com.develop.rubenpla.abatest.di.component.DaggerHomeFragmentComponent
@@ -35,6 +34,11 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
         return super.getContext()!!
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.terminate()
+    }
+
     override fun initializeView() {
         presenter.loadDataFromCsv()
     }
@@ -47,14 +51,12 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
 
     }
 
-    @Suppress("CAST_NEVER_SUCCEEDS")
     override fun showLoading() {
         homeLoading.visibility = View.VISIBLE
     }
 
-    @Suppress("CAST_NEVER_SUCCEEDS")
     override fun hideLoading() {
-        (homeLoading as ProgressBar).visibility = View.GONE
+        homeLoading.visibility = View.GONE
     }
 
 }
