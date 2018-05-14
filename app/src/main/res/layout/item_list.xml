@@ -34,7 +34,7 @@
                 tools:text="Title"/>
 
             <TextView
-                android:id="@+id/item_list__overview"
+                android:id="@+id/item_list_description"
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
