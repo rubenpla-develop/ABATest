@@ -49,6 +49,13 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     compileOnly 'javax.annotation:jsr250-api:1.0'
 
+    //RETROFIT DEPENDENCIES
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitScalarConverterVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLoggingInterceptor"
+
     //TESTING DEPENDENCIES
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
