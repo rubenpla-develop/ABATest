@@ -1,6 +1,5 @@
 package com.develop.rubenpla.abatest.model.mapper
 
-import com.develop.rubenpla.abatest.R
 import com.develop.rubenpla.abatest.model.CsvItemModel
 
 object CsvMapper {

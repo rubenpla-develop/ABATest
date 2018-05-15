@@ -60,6 +60,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$retrofitScalarConverterVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLoggingInterceptor"
 
+    //PICASSO DEPENDENCIES
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+
     //TESTING DEPENDENCIES
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

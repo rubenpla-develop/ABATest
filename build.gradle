@@ -36,6 +36,8 @@ allprojects {
 
         ext.rxAndroidVersion = "2.0.1"
         ext.rxJavaVersion = "2.1.7"
+
+        ext.picassoVersion = "2.5.2"
     }
 }
 

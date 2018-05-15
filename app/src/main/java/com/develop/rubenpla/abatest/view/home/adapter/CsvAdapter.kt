@@ -1,18 +1,25 @@
 package rubenpla.develop.privtmdbendlesslist.ui.adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.develop.rubenpla.abatest.R
 import com.develop.rubenpla.abatest.model.CsvItemModel
+import com.develop.rubenpla.abatest.util.CvsAdapterController
+import com.develop.rubenpla.abatest.util.image.ScaleToFitWidthHeightTransform
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class CsvAdapter (private val list: MutableList<CsvItemModel>,
                   private val listener: (CsvItemModel) -> Unit)
     : RecyclerView.Adapter<CsvAdapter.ItemViewHolder>() {
 
+    private lateinit var context : Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        context = parent.context
         return ItemViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_list, parent, false))
     }
@@ -21,8 +28,17 @@ class CsvAdapter (private val list: MutableList<CsvItemModel>,
         val item = list[position]
         holder.title.text = item.title
         holder.description.text = item.description
-        //TODO picasso imageloading
-        // holder.image
+
+        Picasso.with(context)
+                .load(CvsAdapterController.provideValidImageResource(list[position].imageUrl))
+                .resizeDimen(R.dimen.image_thumb_width, R.dimen.image_thumb_height)
+                .centerCrop()
+                .onlyScaleDown()
+                .priority(Picasso.Priority.HIGH)
+                .transform(ScaleToFitWidthHeightTransform(context.resources
+                        .getDimensionPixelSize(R.dimen.image_thumb_width), false))
+                .error(R.mipmap.ic_launcher_round)
+                .into(holder.image)
 
         holder.itemView.setOnClickListener {
             listener(item)
