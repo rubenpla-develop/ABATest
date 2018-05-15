@@ -1,6 +1,7 @@
 package com.develop.rubenpla.abatest.view.home.presenter
 
 import com.develop.rubenpla.abatest.model.mapper.CsvMapper
+import com.develop.rubenpla.abatest.util.cache.CacheManager
 import com.develop.rubenpla.abatest.view.base.presenter.BasePresenter
 import com.develop.rubenpla.abatest.view.home.view.HomeFragmentView
 import com.example.rubenpla.csvreadertest.CsvApi
@@ -9,9 +10,6 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.processors.PublishProcessor
-import com.develop.rubenpla.abatest.common.AppConstants.CACHE_CSV_FILENAME
-import com.develop.rubenpla.abatest.util.cache.CacheManager
-import java.io.File
 import javax.inject.Inject
 
 class HomeFragmentPresenter @Inject constructor() : BasePresenter<HomeFragmentView>() {
