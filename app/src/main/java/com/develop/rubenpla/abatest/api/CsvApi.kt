@@ -1,11 +1,12 @@
 package com.example.rubenpla.csvreadertest
 
+import com.develop.rubenpla.abatest.app.AbaTestApplication
 import com.develop.rubenpla.abatest.common.AppConstants.BASE_URL
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
@@ -30,12 +31,16 @@ interface CsvApi {
         }
 
         private fun createOkHttpClient() : OkHttpClient {
+            val cacheSize = 10 * 1024 * 1024 // 10 MB
+            val cache = Cache(AbaTestApplication.applicationInstance.cacheDir, cacheSize.toLong())
+
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
 
             val okHttpClient = OkHttpClient.Builder()
 
             okHttpClient.addInterceptor(logging)
+            okHttpClient.cache(cache)
 
             return okHttpClient.build()
         }

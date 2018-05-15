@@ -15,11 +15,14 @@ class AbaTestApplication : Application() {
                     .appModule(AppModule(AbaTestApplication()))
                     .build()
         }
+
+        lateinit var applicationInstance : AbaTestApplication
     }
 
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
+        applicationInstance = this
     }
 
     fun appComponent() : AppComponent = appComponent

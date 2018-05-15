@@ -9,6 +9,9 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.processors.PublishProcessor
+import com.develop.rubenpla.abatest.common.AppConstants.CACHE_CSV_FILENAME
+import com.develop.rubenpla.abatest.util.cache.CacheManager
+import java.io.File
 import javax.inject.Inject
 
 class HomeFragmentPresenter @Inject constructor() : BasePresenter<HomeFragmentView>() {
@@ -29,9 +32,19 @@ class HomeFragmentPresenter @Inject constructor() : BasePresenter<HomeFragmentVi
                     var result = it
                     result = result?.replace("\"", "")
 
+                    CacheManager.writeToCache(result)
                     view!!.setCsvDataToRecyclerView(CsvMapper.mapToList(result))
                 }, {
-                    view!!.showError(it.toString())
+                    var cachedCsvFile  = CacheManager.readFromCacheFile()
+
+                    if (!cachedCsvFile.isNullOrEmpty()) {
+                        view!!.showError("[${it.message.toString()}], " +
+                                "trying to load cached content.")
+                        view!!.setCsvDataToRecyclerView(CsvMapper.mapToList(cachedCsvFile))
+                    } else {
+                        view!!.showError("[${it.message.toString()}], " +
+                                "no cached content, try again later")
+                    }
                 })
 
         disposables.add(disposable)

@@ -47,6 +47,7 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
     }
 
     override fun showError(errorMessage: String) {
+        hideLoading()
         Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show()
     }
 
