@@ -8,8 +8,8 @@ import com.develop.rubenpla.abatest.R
 import com.develop.rubenpla.abatest.model.CsvItemModel
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class CsvAdapter (private val list : MutableList<CsvItemModel>,
-                        private val listener : CsvItemModel)
+class CsvAdapter (private val list: MutableList<CsvItemModel>,
+                  private val listener: (CsvItemModel) -> Unit)
     : RecyclerView.Adapter<CsvAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -18,11 +18,15 @@ class CsvAdapter (private val list : MutableList<CsvItemModel>,
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = list.get(position)
+        val item = list[position]
         holder.title.text = item.title
         holder.description.text = item.description
         //TODO picasso imageloading
         // holder.image
+
+        holder.itemView.setOnClickListener {
+            listener(item)
+        }
     }
 
     /**

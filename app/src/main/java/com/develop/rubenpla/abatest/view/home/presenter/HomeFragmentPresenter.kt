@@ -1,6 +1,6 @@
 package com.develop.rubenpla.abatest.view.home.presenter
 
-import android.util.Log
+import com.develop.rubenpla.abatest.model.mapper.CsvMapper
 import com.develop.rubenpla.abatest.view.base.presenter.BasePresenter
 import com.develop.rubenpla.abatest.view.home.view.HomeFragmentView
 import com.example.rubenpla.csvreadertest.CsvApi
@@ -26,14 +26,12 @@ class HomeFragmentPresenter @Inject constructor() : BasePresenter<HomeFragmentVi
                 .concatMap { getCsvFile(isConnected) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    //TODO not final, format content
                     var result = it
                     result = result?.replace("\"", "")
 
-                    //TODO send to view to fill adapter
-                    Log.i("MainActivity", "Result : $result")
+                    view!!.setCsvDataToRecyclerView(CsvMapper.mapToList(result))
                 }, {
-                    Log.e("MainActivity", it.localizedMessage)
+                    view!!.showError(it.toString())
                 })
 
         disposables.add(disposable)
