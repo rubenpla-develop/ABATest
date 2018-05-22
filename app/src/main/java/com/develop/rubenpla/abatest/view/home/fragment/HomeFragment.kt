@@ -12,7 +12,7 @@ import com.develop.rubenpla.abatest.view.base.fragment.BaseFragment
 import com.develop.rubenpla.abatest.view.home.presenter.HomeFragmentPresenter
 import com.develop.rubenpla.abatest.view.home.view.HomeFragmentView
 import kotlinx.android.synthetic.main.fragment_home.*
-import rubenpla.develop.privtmdbendlesslist.ui.adapter.CsvAdapter
+import com.develop.rubenpla.abatest.view.home.adapter.CsvAdapter
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), HomeFragmentView {

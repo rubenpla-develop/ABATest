@@ -1,4 +1,4 @@
-package rubenpla.develop.privtmdbendlesslist.ui.adapter
+package com.develop.rubenpla.abatest.view.home.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

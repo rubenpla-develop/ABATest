@@ -4,8 +4,8 @@ import com.develop.rubenpla.abatest.model.mapper.CsvMapper
 import com.develop.rubenpla.abatest.util.cache.CacheManager
 import com.develop.rubenpla.abatest.view.base.presenter.BasePresenter
 import com.develop.rubenpla.abatest.view.home.view.HomeFragmentView
-import com.example.rubenpla.csvreadertest.CsvApi
-import com.example.rubenpla.csvreadertest.CsvRepository
+import com.develop.rubenpla.abatest.api.CsvApi
+import com.develop.rubenpla.abatest.api.CsvRepository
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -33,7 +33,7 @@ class HomeFragmentPresenter @Inject constructor() : BasePresenter<HomeFragmentVi
                     CacheManager.writeToCache(result)
                     view!!.setCsvDataToRecyclerView(CsvMapper.mapToList(result))
                 }, {
-                    var cachedCsvFile  = CacheManager.readFromCacheFile()
+                    val cachedCsvFile  = CacheManager.readFromCacheFile()
 
                     if (!cachedCsvFile.isNullOrEmpty()) {
                         view!!.showError("[${it.message.toString()}], " +

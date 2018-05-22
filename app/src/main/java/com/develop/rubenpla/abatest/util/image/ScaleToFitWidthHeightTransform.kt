@@ -4,19 +4,13 @@ import android.graphics.Bitmap
 import com.squareup.picasso.Transformation
 
 
-class ScaleToFitWidthHeightTransform : Transformation {
+class ScaleToFitWidthHeightTransform(size: Int, private var isHeightScale: Boolean) : Transformation {
 
-    private var mSize: Int
-    private var isHeightScale: Boolean = false
-
-    constructor(size: Int, isHeightScale : Boolean) {
-        this.mSize = size
-        this.isHeightScale = isHeightScale
-    }
+    private var mSize: Int = size
 
 
     override fun key(): String {
-        return "scaleRespectRatio$mSize$isHeightScale";
+        return "scaleRespectRatio$mSize$isHeightScale"
     }
 
     override fun transform(source: Bitmap?): Bitmap {
@@ -26,7 +20,7 @@ class ScaleToFitWidthHeightTransform : Transformation {
         if (isHeightScale) {
             scale = mSize.toFloat() / source!!.height
             newSize = Math.round(source.width * scale)
-            scaleBitmap = Bitmap.createScaledBitmap(source, newSize, mSize as Int, true)
+            scaleBitmap = Bitmap.createScaledBitmap(source, newSize, mSize, true)
         } else {
             scale = mSize.toFloat() / source!!.width
             newSize = Math.round(source.height * scale)

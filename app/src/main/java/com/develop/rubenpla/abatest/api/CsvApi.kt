@@ -1,4 +1,4 @@
-package com.example.rubenpla.csvreadertest
+package com.develop.rubenpla.abatest.api
 
 import com.develop.rubenpla.abatest.app.AbaTestApplication
 import com.develop.rubenpla.abatest.common.AppConstants.BASE_URL

@@ -3,7 +3,7 @@ package com.develop.rubenpla.abatest.util
 object CvsAdapterController {
 
     fun provideValidImageResource(itemUrlImageResource : String?) : String? {
-        var urlToReturn : String?
+        val urlToReturn : String?
         val isValidResource = UrlImageFormatController
                 .performImageUrlCheckControl(itemUrlImageResource)
 

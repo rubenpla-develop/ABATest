@@ -19,7 +19,7 @@ object CacheManager {
     }
 
     fun readFromCacheFile() : String? {
-        var cachedContentToReturn : String
+        val cachedContentToReturn : String
         checkIfExistsCacheFile()
 
         val cacheFile = File(AbaTestApplication.applicationInstance.cacheDir,

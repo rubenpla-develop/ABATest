@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference
 
 abstract class BasePresenter<T : BaseView> : PresenterContract<T>  {
 
-    var isInForeground : Boolean = false
+    private var isInForeground : Boolean = false
     private var weakReference : WeakReference<T>? = null
 
     val view : T?
